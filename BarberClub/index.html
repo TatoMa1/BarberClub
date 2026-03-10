@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Peluquería en Concepción del Uruguay, Entre Ríos. Cortes de pelo, barba y más. Reservá tu turno online fácil y rápido.">
+    <meta name="keywords"
+        content="peluquería, barbería, corte de pelo, barba, Concepción del Uruguay, Entre Ríos, reserva online">
+    <meta name="author" content="Peluquería">
+
+    <meta property="og:title" content="Barber Club — Reservá tu turno online">
+    <meta property="og:description"
+        content="Cortes, barba y más. Plaza San Martín, Concepción del Uruguay. Reservá tu turno en segundos.">
+    <meta property="og:image" content="images/logo-peluqueria.webp">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" href="images/Fotos_web/Letras.barber.webp" type="image/webp">
+    <title>Barber Club — Inicio</title>
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --accent: #ffffff;
+            --text: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background: #0a0a0a;
+            color: var(--text);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(images/Fotos_web/fondo.peluqueria.webp) no-repeat;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: clamp(3rem, 10vw, 5rem);
+            color: var(--accent);
+            margin: 0;
+            letter-spacing: 5px;
+            line-height: 1;
+            
+        }
+
+        .hero p {
+            font-weight: 600;
+            font-size: clamp(1rem, 4vw, 1.3rem);
+            margin: 20px 0;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--text);
+        }
+
+        .btn-main {
+            margin-top: 30px;
+            padding: 10px 20px;
+            background: var(--accent);
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 20px;
+            transition: 0.3s;
+            font-size: 1rem;
+            /* celular: area tactil grande */
+            min-height: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-main:hover {
+            background: #71706e;
+            transform: scale(1.03);
+        }
+
+        /*BOTON DE LOS CURSOS*/
+        /* CONTENEDOR DE LOS BOTONES DE CURSOS */
+        .botones-curso {
+            display: flex;
+            justify-content: center;
+            gap: 30px; /* Eespacio entre los botones*/
+            margin-top: 80px;
+            flex-wrap: wrap; /* si la pantalla del celular es chica un botón baje debajo del otro */
+        }
+
+        /*BOTON DE LOS CURSOS*/
+        .btn-curso {
+            padding: 10px;
+            background: var(--accent);
+            color: black;
+            min-width: 200px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 20px;
+            font-size: 1rem;
+            /* celular: area tactil grande */
+            min-height: 10px;
+            display: inline-flex; 
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-curso:hover {
+            background: #71706e;
+            transform: scale(1.03);
+        }
+        
+        /* SECCIONES */
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .section-title img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+        /* SECCIÓN EQUIPO */
+        .equipo-container {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .equipo-member {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .equipo-nombre {
+            color: white;
+            font-size: 1.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: right; 
+            margin: 0;
+        }
+
+        .equipo-img {
+            height: 500px;
+            width: 450px;
+            max-width: 90vw; /* ajuste celulares */
+            border-radius: 20px;
+            object-fit: cover;
+            border: 1px solid #333;
+        }
+
+        /* celular, ponemos el nombre abajo de la imagen */
+        @media (max-width: 680px) {
+            .equipo-member {
+                flex-direction: column-reverse;
+                gap: 15px;
+            }
+            .equipo-nombre {
+                text-align: center;
+            }
+            .equipo-img {
+                height: 400px; /* Evita que la foto sea alta en celular */
+            }
+        }
+        
+        /* GALERÍA */
+        .gallery,
+        .products {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .gallery {
+            scrollbar-width: none;
+        }
+
+        .gallery::-webkit-scrollbar {
+            display: none;
+        }
+
+        .products {
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) #333;
+            padding-bottom: 10px;
+        }
+
+        .products::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .products::-webkit-scrollbar-track {
+            background: #222;
+            border-radius: 10px;
+            margin: 0 20px;
+        }
+
+        .products::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+            border: 2px solid #222;
+        }
+
+        .gallery img {
+            min-width: 85vw;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 1px solid #333;
+            flex-shrink: 0;
+            transition: transform 0.3s;
+            pointer-events: none;
+        }
+
+        @media (min-width: 768px) {
+            .gallery img {
+                min-width: 350px;
+            }
+        }
+
+        /* TARJETAS TIENDA */
+        .card {
+            min-width: 80vw;
+            max-width: 320px;
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            scroll-snap-align: center;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @media (min-width: 768px) {
+            .card {
+                min-width: 300px;
+            }
+        }
+
+        .card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin: 5px 0;
+        }
+
+        .card p {
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .card a {
+            /* celular: Botón de tienda más cómodo */
+            display: block;
+            text-align: center;
+            padding: 12px 15px !important;
+            min-height: 1px;
+        }
+
+        /* SECCIÓN NOSOTROS */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+            align-items: center;
+            text-align: left;
+        }
+
+        @media (max-width: 680px) {
+            .about-grid {
+                justify-items: center;
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .about-grid img {
+            width: 300px;
+            max-width: 90vw; /* Evita que se corte en pantallas muy chicas */
+            height: 280px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 1px solid #333;
+            box-shadow: 0 1px 15px   rgba(255, 255, 255, 0.789);
+
+            /* ESTAS DOS LÍNEAS CENTRAN LA IMAGEN */
+            display: block;
+            margin: 0 auto; 
+        }
+
+        .about-text h3 {
+            color: var(--accent);
+            font-family: 'Courier New', monospace;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .about-text p {
+            color: #ffffff;
+            line-height: 1.8;
+            font-size: 0.80rem;
+            margin-bottom: 10px;
+        }
+
+        /* SECCIÓN PRECIOS */
+        .precios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            max-width: 1500px;
+            margin: 3px auto 0;
+            padding: 0 10px;
+        }
+
+        .precio-card {
+            background: #111;
+            border: 1px solid #2a2a2a;
+            border-radius: 15px;
+            padding: 20px 5px;
+            text-align: center;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .precio-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .precio-card .icono {
+            font-size: 0.90rem;
+            margin-bottom: 1px;
+        }
+
+        .precio-card h3 {
+            font-size: 0.90rem;
+            color: #ddd;
+            margin: 0 0 1px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .precio-card .precio {
+            color: var(--accent);
+            font-size: 0.90rem;
+            font-weight: bold;
+        }
+
+        .precio-card .desc {
+            color: #888;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+        
+        
+        /* SECCIÓN CONTACTO (MAPA) */
+        .mapa-container {
+            margin-top: 15px;
+            overflow: hidden; 
+            border-radius: 15px; 
+        }
+
+        .mapa-container iframe {
+            width: 100%;
+            height: 200px;
+            display: block;
+            border: none;
+            filter: grayscale(1) invert(0.9) contrast(0.85);
+            
+            transition: transform 0.4s ease, filter 0.4s ease; 
+        }
+
+        .mapa-container iframe:hover {
+            transform: scale(1.05); 
+            filter: grayscale(0) invert(0) contrast(1); 
+        }
+
+        /* FOOTER */
+        footer {
+            background: #050505;
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid var(--accent);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h4 {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #ccc;
+            margin: 5px 0;
+        }
+
+        .footer-section a {
+            color: var(--accent);
+        }
+
+        .footer-section a:hover {
+            color: #71706e;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            transition: 0.3s;
+            /* celular: area tactil iconos sociales */
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+        }
+
+        .copyright a,
+        .copyright p {
+            text-align: center;
+            margin-top: 70px;
+            padding-top: 20px;
+            border-top: 1px solid #1a1a1a;
+            color: #aaa;
+        }
+
+        
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between; 
+            /*justify-content:center (por si no quiere el nombre de la peluqueria) */
+            align-items: center;
+            padding: 7px 14px;
+            background: rgba(10, 10, 10, 0.0);
+            transition: background 0.4s, box-shadow 0.4s;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.97);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+        }
+        .navbar-curso{
+            gap: 20px;
+        }
+
+        .navbar-logo {
+            font-family: 'Courier New', monospace;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .navbar-links {
+            padding: 10px 0;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            min-width: 200px;
+        }
+
+        .navbar-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.7rem !important;
+            opacity: 0.9;
+            transition: opacity 0.2s, color 0.2s;
+            transition: text-decoration 0.2s, color 0.5s;
+            letter-spacing: 2px;
+
+        }
+
+        .navbar-links a:hover {
+            opacity: 1;
+            color: var(--accent);
+        }
+
+        .navbar-btn {
+            background: var(--accent);
+            color: #000 !important;
+            font-weight: bold;
+            padding: 5px 5px !important;
+            border-radius: 10px;
+            opacity: 1 !important;
+            font-size: 0.8rem !important;
+            transition: background 0.3s !important;
+            /*celular: alto minimo botón de reserva en navbar */
+            min-height: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-btn:hover {
+            background: #71706e !important;
+        }
+
+        /* BOTÓN FLOTANTE WHATSAPP */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 1000;
+            background: #25D366;
+            color: white;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        /*celular*/
+        @media (max-width: 480px) {
+
+            /* celular: Menos padding lateral en Navbar para que logo y botón respiren */
+            .navbar {
+                padding: 12px 15px;
+            }
+
+            .navbar-logo {
+                font-size: 1.1rem;
+                letter-spacing: 1px;
+            }
+
+            /* celular: Reducir altura de imágenes de cortes para no abarcar tanta vertical */
+            .gallery img {
+                height: 350px;
+                min-width: 50vw;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.5rem, 12vw, 4rem);
+            }
+
+            /* celular: Tarjetas de tienda más fáciles de arrastrar (swipe) */
+            .card {
+                min-width: 60vw;
+                padding: 10px;
+            }
+            
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://wa.me/3442588387" target="_blank" rel="noopener" class="whatsapp-float"
+        aria-label="Contactar por WhatsApp">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M16 .5C7.44.5.5 7.44.5 16c0 2.77.74 5.46 2.14 7.83L.5 31.5l7.87-2.07A15.45 15.45 0 0016 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm0 28.4a13.85 13.85 0 01-7.05-1.93l-.5-.3-5.2 1.37 1.38-5.07-.33-.52A13.9 13.9 0 1116 28.9zm7.63-10.4c-.42-.21-2.48-1.22-2.86-1.36-.39-.14-.67-.21-.95.21-.28.42-1.09 1.36-1.34 1.64-.25.28-.49.31-.91.1-.42-.21-1.77-.65-3.37-2.08-1.25-1.11-2.09-2.48-2.33-2.9-.25-.42-.03-.65.18-.86.19-.19.42-.49.63-.74.21-.25.28-.42.42-.7.14-.28.07-.53-.03-.74-.1-.21-.95-2.28-1.3-3.12-.34-.82-.69-.71-.95-.72h-.81c-.28 0-.74.1-1.12.53-.39.42-1.48 1.45-1.48 3.53s1.52 4.1 1.73 4.38c.21.28 2.99 4.56 7.25 6.4 1.01.44 1.8.7 2.42.9.1.03 2.52.97 3.61.44 1.1-.53 1.73-1.5 1.73-2.24 0-.74-.07-.81-.49-1.03z" />
+        </svg>
+    </a>
+
+    <nav class="navbar" id="mainNav" role="navigation" aria-label="Navegación principal">
+
+        <a href="index.html" class="navbar-logo" aria-label="Inicio Peluquería"> Barber Club</a>
+        <!--<div class="navbar-links">
+            <a href="#nosotros" class="nav-hide">Nosotros</a>
+            <a href="#precios" class="nav-hide">Precios</a>
+            <a href="#cortes" class="nav-hide">Cortes</a>
+            <a href="#shop" class="nav-hide">Tienda</a>
+            <a href="#equipo" class="nav-hide">Equipo</a>
+        </div>-->
+    </nav>
+
+    <section class="hero">
+        <h1>Barber Club</h1>
+        <p style="font-size: 1.5rem; ">"Donde el estilo se vuelve identidad"</p>
+        <a href="https://www.fresha.com/es/a/barber-club-concepcion-del-uruguay-boulevard-12-de-octubre-976-t5uja2a7/all-offer?venue=true&pId=1162957"
+            class="btn-main" aria-label="Ir a reservar turno">Reservar Turno</a>
+    </section>
+
+
+    <!--SECCIÓN NOSOTROS(Relato de la barber)-->
+    <section class="section" id="nosotros">
+        <h2 class="section-title">NOSOTROS</h2>
+        <br>
+        <div class="about-grid">
+            <img src="images/Fotos_web/Logo-Barber1.webp">
+            <div class="about-text">
+                <h3>Barber Club</h3>
+                <p>Barber Club lleva 2 años creando estilos en Concepción del Uruguay. Somos un equipo de barberos profesionales
+                apasionados por el oficio.<br>
+                Realizamos desde cortes tradicionales a tijera hasta los estilos más modernos con todo tipo de fade.<br>
+                
+                También ofrecemos servicios como mechas platinadas, globales y permanente, siempre con asesoramiento personalizado.<br>
+                
+                Buena vibra, buena charla y un servicio pensado para que salgas con tu mejor versión. 💈✂️</p>
+                
+            </div>
+        </div>
+    </section>
+
+
+    <!--PRECIO DE LOS SERVICIOS-->
+    <section class="section" id="precios" style="background:#0d0d0d;">
+        <h2 class="section-title">PRECIOS</h2>
+        <div class="precios-grid" >
+            <div class="precio-card">
+                <div class="icono"></div>
+                <h3>Corte de Pelo</h3>
+                <div class="precio">$12.000</div>
+            </div>
+
+            <div class="precio-card">
+                <div class="icono"></div>
+                <h3>Corte y Barba</h3>
+                <div class="precio">$14.000</div>
+            </div>
+
+            <div class="precio-card" style="border-color: rgba(212,175,55,0.4);">
+                <div class="icono"></div>
+                <h3>Promo Estudiantil</h3>
+                <div class="precio">$11.000</div>
+                <!--<div class="desc">PROMO COMPLETA</div>-->
+            </div>
+            
+            <div class="precio-card" style="border-color: rgba(212,175,55,0.4);">
+                <div class="icono"></div>
+                <h3>Promo Jubilados</h3>
+                <div class="precio">$10.000</div>
+            </div>
+            
+            <div class="precio-card">
+                <div class="icono"></div>
+                <h3>Mechas + Corte</h3>
+                <div class="precio">$40.000</div>
+            </div>
+            
+            <div class="precio-card">
+                <div class="icono"></div>
+                <h3>Global + Corte</h3>
+                <div class="precio">$50.000</div>
+            </div>
+
+            <div class="precio-card">
+                <div class="icono"></div>
+                <h3>Permanente + Corte</h3>
+                <div class="precio">$35.000</div>
+            </div>
+        
+        </div>
+    </section>
+
+
+    <hr style="border-color: var(--accent); margin: 0 50px;">
+
+
+    <!--GALERIA DE FOTOS-->
+    <section class="section" id="cortes">
+        <h2 class="section-title">NUESTROS CORTES</h2>
+        <div class="gallery" id="autoGallery" role="region" aria-label="Galería de cortes">
+            <img src="images/Fotos_Trabajos/img1.webp" loading="lazy">
+            <img src="images/Fotos_Trabajos/img2.webp" loading="lazy">
+            <img src="images/Fotos_Trabajos/img3.webp" loading="lazy">
+            <img src="images/Fotos_Trabajos/img4.webp" loading="lazy">
+            <img src="images/Fotos_Trabajos/img5.webp" loading="lazy">
+            <img src="images/Fotos_Trabajos/img6.webp" loading="lazy">
+            <img src="images/Fotos_Trabajos/img7.webp" loading="lazy">
+            <img src="images/Fotos_Trabajos/img8.webp" loading="lazy">
+            <img src="images/Fotos_Trabajos/img9.webp" loading="lazy">
+            <img src="images/Fotos_Trabajos/img10.webp" loading="lazy">
+            <img src="images/Fotos_Trabajos/img11.webp" loading="lazy">
+            <img src="images/Fotos_Trabajos/img12.webp" loading="lazy">
+            
+        </div>
+    </section>
+
+    <hr style="border-color: var(--accent); margin: 0 50px;"> <!--Linea horizontal blanca-->
+
+    <!--TIENDA ONLINE-->
+    <section class="section" id="shop" style="background:#111;">
+        <h2 class="section-title">TIENDA ONLINE</h2>
+        <div class="products">
+
+    <!--(Carta para los productos de la tienda)
+
+            <div class="card">
+                <img src="   url   " alt="-----" loading="lazy">
+                <div>
+                    <h3> ----- </h3>
+                    <p> ----- </p>
+                    <a href="https://wa.me/3442588387?text=Hola,%20me%20gustar%C3%ADa%20consultar%20por%20la%20Crema%20de%20Peinar%20de%20$6.000.%20Tienen%20Stock?."target="_blank" rel="noopener"
+                    style="color:var(--accent); text-decoration: none; font-weight: bold; border: 1px solid var(--accent); border-radius: 5px;">Consultar</a>
+                </div>
+            </div>-->
+
+            <div class="card">
+                <img src="images/Fotos_Tienda/CremaPeinar.webp" alt="-----" loading="lazy">
+                <div>
+                    <h3>Crema Para Peinar</h3>
+                    <p>$6.000</p>
+                    <a href="https://wa.me/3442588387?text=Hola,%20me%20gustar%C3%ADa%20consultar%20por%20la%20Crema%20de%20Peinar%20de%20$6.000.%20Tienen%20Stock?." target="_blank" rel="noopener"
+                        style="color:var(--accent); text-decoration: none; font-weight: bold; border: 1px solid var(--accent); border-radius: 5px;">Consultar</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="images/Fotos_Tienda/CremaRulos.webp" alt="-----" loading="lazy">
+                <div>
+                    <h3>Crema De Rulos</h3>
+                    <p>$8.000</p>
+                    <a href="https://wa.me/3442588387?text=Hola,%20me%20gustar%C3%ADa%20consultar%20por%20la%20Crema%20de%20Rulos%20de%20$8.000.%20Tienen%20Stock?." target="_blank" rel="noopener"
+                        style="color:var(--accent); text-decoration: none; font-weight: bold; border: 1px solid var(--accent); border-radius: 5px;">Consultar</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="images/Fotos_Tienda/PomadaOpaca.webp" alt="-----" loading="lazy">
+                <div>
+                    <h3>Pomada Opaca</h3>
+                    <p>$11.000</p>
+                    <a href="https://wa.me/3442588387?text=Hola,%20me%20gustar%C3%ADa%20consultar%20por%20la%20Pomada%20Opaca%20de%20$11.000.%20Tienen%20Stock?." target="_blank" rel="noopener"
+                        style="color:var(--accent); text-decoration: none; font-weight: bold; border: 1px solid var(--accent); border-radius: 5px;">Consultar</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="images/Fotos_Tienda/ShampooMatizador.webp" alt="-----" loading="lazy">
+                <div>
+                    <h3>Shampoo Matizador</h3>
+                    <p>$6.000</p>
+                    <a href="https://wa.me/3442588387?text=Hola,%20me%20gustar%C3%ADa%20consultar%20por%20el%20Champoo%20Matizador%20de%20$6.000.%20Tienen%20Stock?." target="_blank" rel="noopener"
+                        style="color:var(--accent); text-decoration: none; font-weight: bold; border: 1px solid var(--accent); border-radius: 5px;">Consultar</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="images/Fotos_Tienda/ShampooVioleta.webp" alt="-----" loading="lazy">
+                <div>
+                    <h3>Shampoo Violeta</h3>
+                    <p>$7.000</p>
+                    <a href="https://wa.me/3442588387?text=Hola,%20me%20gustar%C3%ADa%20consultar%20por%20el%20Shampoo%20Violeta%20de%20$7.000.%20Tienen%20Stock?." target="_blank" rel="noopener"
+                        style="color:var(--accent); text-decoration: none; font-weight: bold; border: 1px solid var(--accent); border-radius: 5px;">Consultar</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="images/Fotos_Tienda/Texturizante.webp" alt="-----" loading="lazy">
+                <div>
+                    <h3>Texturizante Instantaneo</h3>
+                    <p>$10.000</p>
+                    <a href="https://wa.me/3442588387?text=Hola,%20me%20gustar%C3%ADa%20consultar%20por%20el%20Texturizante%20Instantaneo%20de%20$10.000.%20Tienen%20Stock?." target="_blank" rel="noopener"
+                        style="color:var(--accent); text-decoration: none; font-weight: bold; border: 1px solid var(--accent); border-radius: 5px;">Consultar</a>
+                </div>
+            </div>
+    
+        </div>
+    </section>
+
+    <hr style="border-color: var(--accent); margin: 0 50px;"> <!--Linea horizontal blanca-->
+    
+    <!--FOTOS CURSO PELUQUERIA-->
+    <section class="section" id="cortes">
+        <h2 class="section-title">CURSO BARBERIA</h2>
+        <div class="gallery" id="autoGallery2" role="region" aria-label="Galería de cortes">
+            <img src="images/Fotos_Recibidos/foto1.webp" loading="lazy">
+            <img src="images/Fotos_Recibidos/foto2.webp" loading="lazy">
+            <img src="images/Fotos_Recibidos/foto3.webp" loading="lazy">
+            <img src="images/Fotos_Recibidos/foto4.webp" loading="lazy">
+            <img src="images/Fotos_Recibidos/foto5.webp" loading="lazy">
+            <img src="images/Fotos_Recibidos/foto6.webp" loading="lazy"> 
+        </div>
+
+    <div class="botones-curso">
+        <a href="https://wa.me/3442588387?text=Hola,%20me%20gustar%C3%ADa%20consultar%20por%20el%20Curso%20Inicial."
+            class="btn-curso" target="_blank" rel="noopener" aria-label="Consultar por Curso Inicial">Curso Inicial</a>
+        <a href="https://wa.me/3442588387?text=Hola,%20me%20gustar%C3%ADa%20consultar%20por%20el%20Curso%20Profesional."
+            class="btn-curso" target="_blank" rel="noopener" aria-label="Consultar por Curso Profesional">Curso
+            Profesional</a>
+    </div>
+    </section>
+
+    <hr style="border-color: var(--accent); margin: 0 50px;"> <!--Linea horizontal blanca-->
+
+    <!--EQUIPO DE TRABAJO-->
+    <section class="section" id="equipo">
+        <h2 class="section-title">NUESTRO EQUIPO</h2>
+        <br>
+        <div class="equipo-container">
+            <div class="equipo-member">
+                <p class="equipo-nombre">Ezequiel<br>Armella</p>
+                <img src="images/Equipo/EzeBarber.webp" class="equipo-img" alt="Ezequiel Armella">
+            </div>
+            <div class="equipo-member">
+                <p class="equipo-nombre">Santiago<br>Sanchez</p>
+                <img src="images/Equipo/SantiagoSanchez.webp" class="equipo-img" alt="Santiago Sanchez">
+            </div>
+            <div class="equipo-member">
+                <p class="equipo-nombre">Rodrigo<br>Marignani</p>
+                <img src="images/Equipo/RodriMarignani.webp" class="equipo-img" alt="Rodrigo Marignani">
+            </div>
+        </div>
+    </section>
+    
+    <!--PIE DE LA PAGINA-->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4><span aria-hidden="true">🕒</span> Horarios</h4>
+                <p><strong>Martes a Sábado</strong></p>
+                <p>09:00 – 12:00 hs</p>
+                <p>16:00 – 21:00 hs</p>
+            </div>
+            <!--<div class="footer-section">
+                <h4><span aria-hidden="true">📌</span> Ubicación</h4>
+                
+                <a href="https://maps.app.goo.gl/1gKNjU8Yp3ahTbub7" target="_blank" rel="noopener">blvrd 12 de octubre 976,<br>
+                    Concepción del Uruguay</a>
+                <p>Entre Ríos, Argentina — 3260</p>
+            </div> --> <!--por si quiere sacar el mapa-->
+            <div class="footer-section">
+                <h4><span aria-hidden="true">📍</span> Ubicación</h4>
+                <a href="https://maps.google.com/?q=Boulevard+12+de+Octubre+976,+Concepcion+del+Uruguay,+Entre+Rios,+Argentina"
+                    target="_blank" rel="noopener" aria-label="Ver ubicación en Google Maps">Blvrd 12 de Octubre 976,<br>
+                    Concepción del Uruguay</a>
+                <div class="mapa-container" style="margin-top:15px;">
+                    <iframe
+                        src="https://maps.google.com/maps?q=Boulevard+12+de+Octubre+976,+Concepcion+del+Uruguay,+Entre+Rios,+Argentina&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="Ubicación de la peluquería en Google Maps">
+                    </iframe>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4><span aria-hidden="true">📱</span>Nuestras Redes</h4>
+                <div class="social-icons">
+                    <a href="https://wa.me/3442588387" target="_blank" rel="noopener">WhatsApp</a>
+                    <a href="https://www.instagram.com/ezebarberclub/" target="_blank" rel="noopener">Instagram</a>
+                    <a href="https://www.tiktok.com/@ezebarberclub?_r=1&_t=ZS-94ZofZKwe8m" target="_blank" rel="noopener">TikTok</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>© 2026 Barber Club. Todos los derechos reservados.</p>
+        </div>
+        <br>
+        <div class="dev-footer" style= "color: #545353;transition: 0.3s;user-select: none;">
+        <a style="color: #545353;transition: 0.3s;user-select: none" href="https://www.instagram.com/Oscar.meichtry_/">Desarrollado por<br>Oscar Meichtry</a>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+        });
+        document.addEventListener("DOMContentLoaded", () => {
+            const gallery = document.getElementById('autoGallery');
+            const originalImages = Array.from(gallery.children);
+            originalImages.forEach(img => {
+                const clone = img.cloneNode(true);
+                gallery.appendChild(clone);
+            });
+
+            let speed = 1.6;
+            let isPaused = null;
+
+            function infiniteScroll() {
+                if (!isPaused) {
+                    gallery.scrollLeft += speed;
+                    if (gallery.scrollLeft >= gallery.scrollWidth / 2) {
+                        gallery.scrollLeft = 0;
+                    }
+                }
+                requestAnimationFrame(infiniteScroll);
+            }
+            infiniteScroll();
+
+            gallery.addEventListener('mouseenter', () => isPaused = null);
+            gallery.addEventListener('touchstart', () => isPaused = null);
+            gallery.addEventListener('mouseleave', () => isPaused = null);
+            gallery.addEventListener('touchend', () => isPaused = null);
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const gallery = document.getElementById('autoGallery2');
+            const originalImages = Array.from(gallery.children);
+            originalImages.forEach(img => {
+                const clone = img.cloneNode(true);
+                gallery.appendChild(clone);
+            });
+            let speed = 1.6;
+            let isPaused = null;
+            function infiniteScroll() {
+                if (!isPaused) {
+                    gallery.scrollLeft += speed;
+                    if (gallery.scrollLeft >= gallery.scrollWidth / 2) {
+                        gallery.scrollLeft = 0;
+                    }
+                }
+                requestAnimationFrame(infiniteScroll);
+            }
+            infiniteScroll();
+
+            gallery.addEventListener('mouseenter', () => isPaused = null);
+            gallery.addEventListener('touchstart', () => isPaused = null);
+            gallery.addEventListener('mouseleave', () => isPaused = null);
+            gallery.addEventListener('touchend', () => isPaused = null);
+        });
+    </script>
+</body>
+
+</html>
