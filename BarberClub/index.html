@@ -340,7 +340,7 @@
         .about-text p {
             color: #ffffff;
             line-height: 1.8;
-            font-size: 0.80rem;
+            font-size: 1rem;
             margin-bottom: 10px;
         }
 
@@ -647,7 +647,7 @@
 
     <nav class="navbar" id="mainNav" role="navigation" aria-label="Navegación principal">
 
-        <a href="index.html" class="navbar-logo" aria-label="Inicio Peluquería"> Barber Club</a>
+        <a href="index.html" class="navbar-logo" aria-label="Inicio Peluquería"> BARBER CLUB</a>
         <!--<div class="navbar-links">
             <a href="#nosotros" class="nav-hide">Nosotros</a>
             <a href="#precios" class="nav-hide">Precios</a>
@@ -827,7 +827,7 @@
             <div class="card">
                 <img src="images/Fotos_Tienda/Texturizante.webp" alt="-----" loading="lazy">
                 <div>
-                    <h3>Texturizante Instantaneo</h3>
+                    <h3>Polvo Texturizante</h3>
                     <p>$10.000</p>
                     <a href="https://wa.me/3442588387?text=Hola,%20me%20gustar%C3%ADa%20consultar%20por%20el%20Texturizante%20Instantaneo%20de%20$10.000.%20Tienen%20Stock?." target="_blank" rel="noopener"
                         style="color:var(--accent); text-decoration: none; font-weight: bold; border: 1px solid var(--accent); border-radius: 5px;">Consultar</a>
@@ -872,7 +872,7 @@
                 <img src="images/Equipo/EzeBarber.webp" class="equipo-img" alt="Ezequiel Armella">
             </div>
             <div class="equipo-member">
-                <p class="equipo-nombre">Santiago<br>Sanchez</p>
+                <p class="equipo-nombre">Santino<br>Sanchez</p>
                 <img src="images/Equipo/SantiagoSanchez.webp" class="equipo-img" alt="Santiago Sanchez">
             </div>
             <div class="equipo-member">
@@ -931,6 +931,7 @@
     </footer>
 
     <script>
+        /* autoscroll fotos de los cortes */
         window.addEventListener('scroll', () => {
             document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
         });
@@ -941,10 +942,8 @@
                 const clone = img.cloneNode(true);
                 gallery.appendChild(clone);
             });
-
-            let speed = 1.6;
+            let speed = 2.5;
             let isPaused = null;
-
             function infiniteScroll() {
                 if (!isPaused) {
                     gallery.scrollLeft += speed;
@@ -955,13 +954,13 @@
                 requestAnimationFrame(infiniteScroll);
             }
             infiniteScroll();
-
             gallery.addEventListener('mouseenter', () => isPaused = null);
             gallery.addEventListener('touchstart', () => isPaused = null);
             gallery.addEventListener('mouseleave', () => isPaused = null);
             gallery.addEventListener('touchend', () => isPaused = null);
         });
 
+        /* autoscroll fotos del curso de barberia*/
         document.addEventListener("DOMContentLoaded", () => {
             const gallery = document.getElementById('autoGallery2');
             const originalImages = Array.from(gallery.children);
@@ -969,7 +968,7 @@
                 const clone = img.cloneNode(true);
                 gallery.appendChild(clone);
             });
-            let speed = 1.6;
+            let speed = 2.5;
             let isPaused = null;
             function infiniteScroll() {
                 if (!isPaused) {
@@ -981,12 +980,12 @@
                 requestAnimationFrame(infiniteScroll);
             }
             infiniteScroll();
-
             gallery.addEventListener('mouseenter', () => isPaused = null);
             gallery.addEventListener('touchstart', () => isPaused = null);
             gallery.addEventListener('mouseleave', () => isPaused = null);
             gallery.addEventListener('touchend', () => isPaused = null);
         });
+
     </script>
 </body>
 
