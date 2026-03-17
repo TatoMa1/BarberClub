@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperAdmin | Acceso Protegido</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .admin-card {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #f5f5f5;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .cliente {
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* Estilos del Login */
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #222;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #25D366;
+        }
+
+        #login-error {
+            color: #e63946;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Estilos del Dashboard */
+        .status-container {
+            background: #111;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid #222;
+        }
+
+        .status-label {
+            font-size: 1rem;
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .badge {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .badge-activo {
+            color: #25D366;
+        }
+
+        .badge-inactivo {
+            color: #e63946;
+        }
+
+        .badge-cargando {
+            color: #888;
+        }
+
+        .botones {
+            display: flex;
+            gap: 15px;
+            flex-direction: column;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+            width: 100%;
+        }
+
+        .btn-verde {
+            background: #25D366;
+            color: #000;
+        }
+
+        .btn-verde:hover:not(:disabled) {
+            background: #20b858;
+            transform: translateY(-2px);
+        }
+
+        .btn-rojo {
+            background: #e63946;
+            color: white;
+        }
+
+        .btn-rojo:hover:not(:disabled) {
+            background: #c62d3a;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #888;
+            border: 1px solid #555;
+            margin-top: 20px;
+        }
+
+        .btn-outline:hover {
+            color: white;
+            border-color: white;
+        }
+
+        button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="login-container" class="admin-card">
+        <h2>Acceso SuperAdmin</h2>
+        <input type="email" id="email" placeholder="Correo electrónico" class="input-field">
+        <input type="password" id="password" placeholder="Contraseña" class="input-field">
+        <button id="btn-login" class="btn-verde">INGRESAR</button>
+        <p id="login-error">Credenciales incorrectas.</p>
+    </div>
+
+    <div id="dashboard-container" class="admin-card" style="display: none;">
+        <h2>Panel de Control</h2>
+        <div class="cliente">CLIENTE: BARBER CLUB EZE</div>
+
+        <div class="status-container">
+            <span class="status-label">ESTADO ACTUAL:</span>
+            <div id="estado-badge" class="badge badge-cargando">CONECTANDO...</div>
+        </div>
+
+        <div class="botones">
+            <button id="btn-activar" class="btn-verde" disabled>ACTIVAR WEB</button>
+            <button id="btn-desactivar" class="btn-rojo" disabled>DESACTIVAR WEB</button>
+            <button id="btn-logout" class="btn-outline">CERRAR SESIÓN</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+
+        // 1. Importamos los módulos de Auth y Realtime Database
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+        import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCKKoFv6zSwkAPE9qHoaiQ7t1WLHyxOBAc",
+            authDomain: "barberclub-eze.firebaseapp.com",
+            databaseURL: "https://barberclub-eze-default-rtdb.firebaseio.com",
+            projectId: "barberclub-eze",
+            storageBucket: "barberclub-eze.firebasestorage.app",
+            messagingSenderId: "927326291131",
+            appId: "1:927326291131:web:5874ae7133f2a266f0959e",
+            measurementId: "G-SFNGSYNKLS"
+        };
+
+        // 2. Inicializamos Firebase, Auth y Database
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
+
+        // La referencia al nodo donde guardaremos el estado. En RTDB usamos 'ref' en lugar de 'doc'
+        const estadoRef = ref(db, 'config/estadoWeb');
+
+        // Referencias del DOM (Login)
+        const loginContainer = document.getElementById('login-container');
+        const dashboardContainer = document.getElementById('dashboard-container');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const btnLogin = document.getElementById('btn-login');
+        const loginError = document.getElementById('login-error');
+        const btnLogout = document.getElementById('btn-logout');
+
+        // Referencias del DOM (Control)
+        const badge = document.getElementById('estado-badge');
+        const btnActivar = document.getElementById('btn-activar');
+        const btnDesactivar = document.getElementById('btn-desactivar');
+
+        // ==========================================
+        // LÓGICA DE AUTENTICACIÓN
+        // ==========================================
+
+        // Listener para saber si el usuario está logueado o no
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Usuario logueado: mostramos dashboard
+                loginContainer.style.display = 'none';
+                dashboardContainer.style.display = 'block';
+                iniciarListenerDeEstado(); // Empezamos a escuchar los datos solo si está logueado
+            } else {
+                // No hay usuario: mostramos login
+                loginContainer.style.display = 'block';
+                dashboardContainer.style.display = 'none';
+            }
+        });
+
+        // Iniciar Sesión
+        btnLogin.addEventListener('click', () => {
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            btnLogin.disabled = true;
+            btnLogin.textContent = "VERIFICANDO...";
+            loginError.style.display = 'none';
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Éxito: onAuthStateChanged se encargará del resto
+                    btnLogin.disabled = false;
+                    btnLogin.textContent = "INGRESAR";
+                })
+                .catch((error) => {
+                    // Error de credenciales
+                    loginError.style.display = 'block';
+                    btnLogin.disabled = false;
+                    btnLogin.textContent = "INGRESAR";
+                });
+        });
+
+        // Cerrar Sesión
+        btnLogout.addEventListener('click', () => {
+            signOut(auth).then(() => {
+                // Limpiamos los inputs
+                emailInput.value = '';
+                passwordInput.value = '';
+            });
+        });
+
+        // ==========================================
+            // LÓGICA DE BASE DE DATOS (RTDB)
+            // ==========================================
+
+            function iniciarListenerDeEstado() {
+                // Escuchamos cambios en tiempo real en la referencia 'config/estadoWeb'
+                onValue(estadoRef, (snapshot) => {
+                    const data = snapshot.val();
+
+                    // Si el nodo no existe, asumimos que está inactivo por seguridad
+                    const activo = data ? data.activo : false;
+                    actualizarInterfaz(activo);
+                });
+            }
+
+            function actualizarInterfaz(activo) {
+                // Asegurarnos de que ambos botones estén siempre visibles
+                btnActivar.style.display = 'block';
+                btnDesactivar.style.display = 'block';
+
+                if (activo) {
+                    badge.textContent = 'ACTIVO';
+                    badge.className = 'badge badge-activo';
+                    // Si está activo, bloqueamos el botón de activar y habilitamos el de desactivar
+                    btnActivar.disabled = true;
+                    btnDesactivar.disabled = false;
+                } else {
+                    badge.textContent = 'SUSPENDIDO';
+                    badge.className = 'badge badge-inactivo';
+                    // Si está suspendido, habilitamos el botón de activar y bloqueamos el de desactivar
+                    btnActivar.disabled = false;
+                    btnDesactivar.disabled = true;
+                }
+            }
+
+            // ==========================================
+            // ACCIONES DE LOS BOTONES
+            // ==========================================
+
+            btnActivar.addEventListener('click', () => {
+                // Bloqueamos ambos temporalmente mientras carga
+                btnActivar.disabled = true;
+                btnDesactivar.disabled = true;
+
+                badge.textContent = 'ACTUALIZANDO...';
+                badge.className = 'badge badge-cargando';
+
+                // 'set' sobreescribe el nodo con el nuevo objeto
+                set(estadoRef, {
+                    activo: true
+                });
+            });
+
+            btnDesactivar.addEventListener('click', () => {
+                // Bloqueamos ambos temporalmente mientras carga
+                btnActivar.disabled = true;
+                btnDesactivar.disabled = true;
+
+                badge.textContent = 'ACTUALIZANDO...';
+                badge.className = 'badge badge-cargando';
+
+                set(estadoRef, {
+                    activo: false
+                });
+            });
+
+        </script>
+    </body>
+    
+    </html>
+
+    </script>
+</body>
+
+</html>
