@@ -40,6 +40,7 @@
             --primary: #1a1a1a;
             --accent: #ffffff;
             --text: #f4f4f4;
+            --footer: #2eda0c;
         }
 
         body {
@@ -53,32 +54,140 @@
 
         /* PANTALLA DE SUSPENSIÓN */
         #pantalla-suspension {
-            display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: #000;
-            z-index: 9999;
+            inset: 0;
+            background: #0a0a0a;
+            z-index: 99999;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            color: white;
             text-align: center;
-            font-family: 'Courier New', monospace;
+            color: #f5f5f5;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 20px;
+            box-sizing: border-box; /* Evita que el padding desborde la pantalla */
         }
 
-        #pantalla-suspension h2 {
-            color: var(--accent);
+        #pantalla-suspension h1 {
+            color: #e63946;
+            /* clamp() hace que la letra sea gigante en PC pero se achique en celular automáticamente */
+            font-size: clamp(2.5rem, 10vw, 4rem); 
             letter-spacing: 2px;
-            margin-bottom: 10px;
+            margin: 0 0 15px 0;
+            line-height: 1.1;
+            text-transform: uppercase;
         }
 
         #pantalla-suspension p {
-            font-size: 1.2rem;
-            color: #ccc;
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            color: #aaa;
+            margin: 0 auto 30px auto;
+            max-width: 90%; /* Evita que el texto toque los bordes del celular */
+            line-height: 1.5;
         }
+
+        .btn-contacto-admin {
+            padding: 12px 25px;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+        }
+
+        .btn-contacto-admin:hover {
+            transform: scale(1.05);
+        }
+
+
+
+
+        /* CARTASS PARA EL EQUIPO, MASC CHICO */
+
+        /*.tattoo-section {
+            padding: 5rem 1.5rem 2rem;
+            background: var(--dark2);
+            
+        }
+
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-top: 1rem;
+        }
+
+        .team-card {
+            background: var(--dark3);
+            border: 1px solid rgba(212, 211, 207, 0.15);
+            border-radius: 16px;
+            padding: 2rem 1rem;
+            text-align: center;
+            width: calc(33.333% - 1rem);
+            
+            transition: all 0.3s;
+        }
+
+        .team-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
+        }
+
+        .team-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 2px solid var(--gold);
+            padding: 3px;
+            
+        }
+
+        .team-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .team-card p {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        
+        @media (max-width: 600px) {
+            .team-card {
+                
+                width: calc(50% - 0.75rem);
+                padding: 1.5rem 0.5rem;
+            }
+
+            .team-img {
+                width: 85px;
+                height: 85px;
+            }
+
+            .team-card h3 {
+                font-size: 1rem;
+            }
+
+            .team-card p {
+                font-size: 0.7rem;
+            }
+        }*/
+
+
 
         /* HERO SECTION */
         .hero {
@@ -122,7 +231,7 @@
             border-radius: 20px;
             transition: 0.3s;
             font-size: 1rem;
-            
+
             min-height: 10px;
             display: inline-flex;
             align-items: center;
@@ -140,7 +249,7 @@
             display: flex;
             justify-content: center;
             gap: 30px;
-            
+
             margin-top: 80px;
             flex-wrap: wrap;
             /* si la pantalla del celular es chica un botón baje debajo del otro */
@@ -547,13 +656,39 @@
             color: #aaa;
         }
 
-        
-        .footer-dev a {
-            color:#888;
+        /* Marca Desarrollador */
+        .footer-dev {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #666;
+            letter-spacing: 1px;
+            font-family: 'DM Sans', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            /* Espacio entre el texto y tu nombre */
         }
 
-        .footer-dev a:hover{
-            color:white
+        .footer-dev p {
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .footer-dev a {
+            color: var(--footer);
+            /* Tu nombre en dorado */
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .footer-dev a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+            /* Brillo dorado al pasar el mouse */
+            transform: translateY(-1px);
         }
 
 
@@ -594,15 +729,15 @@
 
         .navbar-links {
             display: flex;
-            flex-direction: column; 
-            align-items: center;  
+            flex-direction: column;
+            align-items: center;
             text-align: center;
         }
 
         .navbar-links a {
             color: var(--text);
             text-decoration: none;
-            font-size: 1rem ;
+            font-size: 1rem;
             opacity: 0.9;
             transition: opacity 0.2s, color 0.2s;
             transition: text-decoration 0.2s, color 0.5s;
@@ -623,7 +758,7 @@
             opacity: 1 !important;
             font-size: 0.8rem !important;
             transition: background 0.3s !important;
-            
+
             min-height: 10px;
             display: flex;
             align-items: center;
@@ -664,9 +799,9 @@
         }
 
 
-        /* Menu */ 
+        /* Menu */
         .menuserv {
-            background: rgba(255, 255, 255, 0.05); 
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: var(--gold);
             padding: 8px;
@@ -679,7 +814,7 @@
         }
 
         .menuserv:hover {
-            background: var(--gold); 
+            background: var(--gold);
             color: var(--dark);
             transform: scale(1.1);
             box-shadow: 0 0 15px rgba(245, 245, 245, 0.2);
@@ -696,60 +831,36 @@
             border-radius: 12px;
             list-style: none;
             min-width: 80px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
+
         #menu a {
             display: block;
             padding: 10px 0;
             border-bottom: 1px solid rgba(112, 47, 47, 0.05);
         }
 
-        .suspension{
-            display: none; 
-            position: fixed; 
-            inset: 0; 
-            background: #0a0a0a; 
-            z-index: 99999; 
-            flex-direction: column; 
-            justify-content: center;
-            align-items: center; 
-            text-align: center; 
-            color: #f5f5f5; 
-            font-family: 'DM Sans', sans-serif; 
-            padding: 20px;
-        }
+        
 
-        .title-suspension{
-            color: #e63946; 
-            font-family: 'Bebas Neue', sans-serif; 
-            font-size: 3rem; 
-            letter-spacing: 2px;
-        }
-
-        .text-suspension{
-            font-size: 1.2rem; 
-            color: #fefefe; 
-            margin-top: 10px;
-        }
-
-        .btn-soporte{
-            margin-top: 30px; 
-            padding: 10px 20px; 
-            background: #25D366; 
-            color: white; 
-            text-decoration: none; 
-            border-radius: 5px; 
+        .btn-soporte {
+            margin-top: 30px;
+            padding: 10px 20px;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
             font-weight: bold;
         }
 
 
         /* Marca Desarrollador */
-        .dev-footer a:hover{
-            color:rgb(255, 255, 255)
+        .dev-footer a:hover {
+            color: rgb(255, 255, 255)
         }
 
         /*celular*/
         @media (max-width: 480px) {
+
             /* celular: Menos padding lateral en Navbar para que logo y botón respiren */
             .navbar {
                 padding: 12px 15px;
@@ -783,13 +894,11 @@
 
 <body>
 
-    <div class="suspension" id="pantalla-suspension">
-        <h1 class="title-suspension">Sitio
-            Suspendido</h1>
-        <p class="text-suspension">El servicio se encuentra temporalmente inactivo por
-            falta de pago.<br>Por
-            favor, comunícate con el administrador del sistema.</p>
-        <a class="btn-soporte" href="https://wa.me/3445411318">Contactar a Soporte</a>
+    <div id="pantalla-suspension" style="display: none;">
+        <h1>Sitio Suspendido</h1>
+        <p>El servicio se encuentra temporalmente inactivo.<br>Por favor, comunícate con el administrador del sistema.</p>
+        <a href="https://wa.me/3442588387?text=Hola%20Eze,%20hay%20un%20problema%20en%20la%20web%20(Suspension)"
+            class="btn-contacto-admin">Contactar al Dueño</a>
     </div>
 
     <div id="contenido-principal">
@@ -803,8 +912,8 @@
 
         <nav class="navbar" id="mainNav">
             <a href="index.html" class="navbar-logo">BARBER CLUB</a>
-        
-        <!--<div class="navbar-links">
+
+            <!--<div class="navbar-links">
                 <button class="menuserv" onclick="document.getElementById('menu').toggleAttribute('hidden')">
                     <span class="material-symbols-outlined">menu</span>
                 </button>
@@ -1034,6 +1143,26 @@
             </div>
         </section>
 
+        <!--<section class="tattoo-section" id="tatuadores">
+        <div class="section-wrap">
+            <h2 class="sec-title" style="text-align: center;">Nuestros Tatuadores</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="images/equipo/BlancoVertical.png" alt="Tatuador 1" class="team-img" loading="lazy">
+                    <h3>Nombre 1</h3>
+                    <p>Tatuador</p>
+                </div>
+                <div class="team-card">
+                    <img src="images/equipo/BlancoVertical.png" alt="Tatuador 2" class="team-img" loading="lazy">
+                    <h3>Nombre 2</h3>
+                    <p>Tatuador</p>
+                </div>
+            </div>
+        </div>
+    </section>-->
+
+
+
         <footer>
             <div class="footer-container">
                 <div class="footer-section">
@@ -1072,7 +1201,9 @@
             </div>
             <br>
             <div class="footer-dev">
-                <a href="https://oscar-portafolioweb.vercel.app/">Desarrollado por<br>Oscar Meichtry</a>
+                <p>Sitio web creado por<br>
+                    <a href="https://oscar-portafolioweb.vercel.app/" target="_blank" rel="noopener">Oscar Meichtry</a>
+                </p>
             </div>
         </footer>
     </div>
@@ -1084,7 +1215,7 @@
         import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
 
         const firebaseConfig = {
-            apiKey: "AIzaSyCKKoFv6zSwkAPE9qHoaiQ7t1WLHyxOBAc",
+            apiKey: "AIzaSyCZ38crSnce0cBugBzMR683QBTgkUGvocY",
             authDomain: "barberclub-eze.firebaseapp.com",
             databaseURL: "https://barberclub-eze-default-rtdb.firebaseio.com",
             projectId: "barberclub-eze",
@@ -1173,21 +1304,21 @@
         });
 
         // Cerrar el menú si se hace clic fuera de él
-            document.addEventListener('click', (e) => {
-                const menu = document.getElementById('menu');
-                const btn = document.querySelector('.menuserv');
+        document.addEventListener('click', (e) => {
+            const menu = document.getElementById('menu');
+            const btn = document.querySelector('.menuserv');
 
-                if (!menu.contains(e.target) && !btn.contains(e.target)) {
-                    menu.hidden = true;
-                }
-            });
+            if (!menu.contains(e.target) && !btn.contains(e.target)) {
+                menu.hidden = true;
+            }
+        });
 
-            // Cerrar el menú automáticamente al hacer clic en un enlace (para navegar suave)
-            document.querySelectorAll('#menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    document.getElementById('menu').hidden = true;
-                });
+        // Cerrar el menú automáticamente al hacer clic en un enlace (para navegar suave)
+        document.querySelectorAll('#menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('menu').hidden = true;
             });
+        });
     </script>
 </body>
 
